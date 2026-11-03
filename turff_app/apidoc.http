@@ -1,0 +1,131 @@
+### get all turf
+
+GET http://127.0.0.1:8000/turfs/
+Accept: application/json
+
+### Add a new turf
+
+POST http://127.0.0.1:8000/turfs/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "turf_name": "Green Arena",
+  "location": "Kochi",
+  "description": "Football turf with quality artificial grass",
+  "sports": "foot_ball",
+  "price_per_hr": "1200.00",
+  "capacity": 14,
+  "opening_time": "06:00:00",
+  "closing_time": "23:00:00",
+  "is_active": true
+}
+
+### get one 
+
+GET http://127.0.0.1:8000/turfs/1/
+Accept: application/json
+
+### update one
+
+PUT http://127.0.0.1:8000/turfs/1/
+Content-Type: application/json
+Accept: application/json
+
+{
+"turf_name": "Green Arena Premium",
+"location": "Kochi, Kerala",
+"description": "Premium football turf with artificial grass and floodlights",
+"sports": "foot_ball",
+"price_per_hr": "1500.00",
+"capacity": 16,
+"opening_time": "06:00:00",
+"closing_time": "23:00:00",
+"is_active": true
+}
+
+### Delete turf by ID
+
+DELETE http://127.0.0.1:8000/turfs/1/
+Accept: application/json
+
+### add a booking
+
+### Create a turf booking
+
+POST http://127.0.0.1:8000/bookings/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "customer_name": "Tony Philip",
+  "customer_phone": "9876543210",
+  "turf": 1,
+  "booking_date": "2026-10-30",
+  "start_time": "18:00:00",
+  "end_time": "19:00:00"
+}
+
+### get all bookings
+
+GET http://127.0.0.1:8000/booking/
+Accept: application/json
+
+###check the date and time 
+
+POST http://127.0.0.1:8000/booking/
+Content-Type: application/json
+
+{
+    "customer_name": "chakka",
+    "customer_phone": "9874543219",
+    "turf": 2,
+    "booking_date": "2026-10-31",
+    "start_time": "15:15:00",
+    "end_time": "16:15:00"
+}
+
+### chech out of time range
+
+POST http://127.0.0.1:8000/bookings/
+Content-Type: application/json
+
+{
+    "customer_name": "Tony",
+    "customer_phone": "9876543210",
+    "turf": 2,
+    "booking_date": "2026-11-05",
+    "start_time": "23:00:00",
+    "end_time": "23:30:00"
+}
+
+###get 1 booking
+
+GET http://127.0.0.1:8000/booking/3/
+Accept: application/json
+
+###cancel one booking
+
+PATCH http://127.0.0.1:8000/booking/3/
+Content-Type: application/json
+
+### filter
+
+GET http://127.0.0.1:8000/booking/?turf=2&status=cancelled
+Accept: application/json
+
+### Create Booking for Today
+POST http://127.0.0.1:8000/booking/
+Content-Type: application/json
+
+{
+    "customer_name": "Tony",
+    "customer_phone": "9876543210",
+    "turf": 2,
+    "booking_date": "2026-11-01",
+    "start_time": "18:00:00",
+    "end_time": "19:00:00"
+}
+
+### Check Availability for Today
+GET http://127.0.0.1:8000/availability/?turf=2&date=2026-11-02
